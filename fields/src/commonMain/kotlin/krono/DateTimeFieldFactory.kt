@@ -1,6 +1,6 @@
 package krono
 
-import krono.internal.DateTimeFieldImpl
+import krono.internal.LocalDateTimeFieldImpl
 import neat.ValidationFactory
 import symphony.Changer
 import symphony.Fields
@@ -20,5 +20,5 @@ fun Fields<*>.dateTime(
     onChange: Changer<DateTimePresenter>? = null,
     factory: ValidationFactory<DateTimePresenter>? = null
 ): LocalDateTimeField = getOrCreate(name) {
-    DateTimeFieldImpl(name, label, pattern, visibility, hint, onChange, factory)
+    LocalDateTimeFieldImpl(name, label, pattern, visibility, hint, onChange, factory)
 }

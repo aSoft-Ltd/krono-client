@@ -2,7 +2,7 @@ package krono.internal
 
 import neat.ValidationFactory
 import symphony.Changer
-import krono.DateTimeField
+import krono.LocalDateTimeField
 import krono.DateTimePresenter
 import krono.LocalDate
 import krono.LocalDateEpoch
@@ -16,7 +16,7 @@ import symphony.internal.BaseFieldImpl
 import kotlin.reflect.KMutableProperty0
 
 @PublishedApi
-internal class DateTimeFieldImpl(
+internal class LocalDateTimeFieldImpl(
     name: KMutableProperty0<DateTimePresenter?>,
     label: String,
     private val pattern: PresenterPattern,
@@ -24,7 +24,7 @@ internal class DateTimeFieldImpl(
     hint: String,
     onChange: Changer<DateTimePresenter>?,
     factory: ValidationFactory<DateTimePresenter>?
-) : BaseFieldImpl<DateTimePresenter>(name, label, visibility, hint, onChange, factory), DateTimeField {
+) : BaseFieldImpl<DateTimePresenter>(name, label, visibility, hint, onChange, factory), LocalDateTimeField {
     override fun setDateTimeIso(iso: String?) {
         val dt = LocalDateTime(iso).getOrNull() ?: return
         val out = state.value.output?.copy(date = dt.date, time = dt.time) ?: DateTimePresenter(

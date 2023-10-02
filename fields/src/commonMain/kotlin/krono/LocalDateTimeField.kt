@@ -6,7 +6,7 @@ package krono
 import symphony.BaseField
 import kotlin.js.JsExport
 
-interface DateTimeField : BaseField<DateTimePresenter> {
+interface LocalDateTimeField : BaseField<DateTimePresenter> {
 
     fun setDateTimeIso(iso: String?)
 

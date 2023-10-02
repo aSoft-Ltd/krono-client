@@ -7,7 +7,7 @@ import symphony.RangeField
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
-interface DateRangeField : RangeField<LocalDate> {
+interface LocalDateRangeField : RangeField<LocalDate> {
     @JsName("setStartIsoString")
     fun setStart(iso: String?)
 

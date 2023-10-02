@@ -1,7 +1,7 @@
 package krono
 
 import neat.ValidationFactory
-import krono.internal.DateRangeFieldImpl
+import krono.internal.LocalDateRangeFieldImpl
 import symphony.Changer
 import symphony.Fields
 import symphony.Range
@@ -15,5 +15,5 @@ fun Fields<*>.range(
     onChange: Changer<Range<LocalDate>>? = null,
     factory: ValidationFactory<Range<LocalDate>>? = null
 ): LocalDateRangeField = getOrCreate(name) {
-    DateRangeFieldImpl(name, label, visibility, onChange, factory)
+    LocalDateRangeFieldImpl(name, label, visibility, onChange, factory)
 }

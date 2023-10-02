@@ -1,7 +1,7 @@
 package krono
 
 import neat.ValidationFactory
-import krono.internal.DateFieldImpl
+import krono.internal.LocalDateFieldImpl
 import symphony.Changer
 import symphony.Fields
 import symphony.Visibility
@@ -15,5 +15,5 @@ fun Fields<*>.date(
     onChange: Changer<LocalDate>? = null,
     factory: ValidationFactory<LocalDate>? = null
 ): LocalDateField = getOrCreate(name) {
-    DateFieldImpl(name, label, visibility, hint, onChange, factory)
+    LocalDateFieldImpl(name, label, visibility, hint, onChange, factory)
 }
