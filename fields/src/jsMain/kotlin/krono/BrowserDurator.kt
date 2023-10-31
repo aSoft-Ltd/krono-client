@@ -28,11 +28,12 @@ class BrowserDurator(private val clock: Clock) : Durator {
     }
 
     override fun durate(i: Instant): Live<String> {
-        val live = instants.getOrPut(i.epochMilliSecondsAsLong) {
-            ReferenceLive(1, mutableLiveOf(i.passed()))
+        val ref = instants.getOrPut(i.epochMilliSecondsAsLong) {
+            ReferenceLive(0, mutableLiveOf(i.passed()))
         }
+        ref.count++
         start()
-        return live.live
+        return ref.live
     }
 
     override fun remove(i: Instant) {
