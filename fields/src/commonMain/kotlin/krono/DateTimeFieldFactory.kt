@@ -6,12 +6,13 @@ import symphony.Changer
 import symphony.Fields
 import symphony.Visibility
 import kotlin.reflect.KMutableProperty0
+import symphony.Visibilities
 
 fun Fields<*>.dateTime(
     name: KMutableProperty0<DateTimePresenter?>,
     label: String = name.name,
     hint: String = label,
-    visibility: Visibility = Visibility.Visible,
+    visibility: Visibility = Visibilities.Visible,
     pattern: PresenterPattern = name.get()?.pattern ?: PresenterPattern(
         date = "{YYYY}-{MM}-{DD}",
         time = "{HH}:{mm}:{ss}",
