@@ -3,6 +3,7 @@ package krono
 import cinematic.Live
 import cinematic.MutableLive
 import cinematic.mutableLiveOf
+import kotlin.math.absoluteValue
 
 class BrowserDurator(private val clock: Clock) : Durator {
     private val instants = mutableMapOf<Long, ReferenceLive>()
@@ -13,7 +14,7 @@ class BrowserDurator(private val clock: Clock) : Durator {
     )
 
     private fun Instant.passed() = Duration(
-        value = clock.currentSecondsAsDouble() - epochSeconds.toDouble(),
+        value = (clock.currentSecondsAsDouble() - epochSeconds.toDouble()).absoluteValue,
         unit = DurationUnit.Seconds
     ).toRelativeString()
 

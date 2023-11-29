@@ -23,14 +23,14 @@ interface Durator {
      * @return [DuratorStartResults]
      * @return [DuratorStartResults.Started] | [DuratorStartResults.AlreadyStarted] when [force] = true
      */
-    fun start(force: Boolean? = null) : DuratorStartResults
+    fun start(force: Boolean? = null): DuratorStartResults
 
     /**
      * Submits an [Instant] to the durator for computation
      * @see remove
      * @param i - the instance to be submitted
      */
-    fun durate(i: Instant) : Live<String>
+    fun durate(i: Instant): Live<String>
 
     /**
      * Remove the [Instant] to the durator for computation
