@@ -4,19 +4,26 @@ import cinematic.Live
 import cinematic.MutableLive
 import cinematic.mutableLiveOf
 import kotlin.math.absoluteValue
+import kotlin.math.sign
 
 class BrowserDurator(private val clock: Clock) : Durator {
     private val instants = mutableMapOf<Long, ReferenceLive>()
 
     class ReferenceLive(
         var count: Int,
-        val live: MutableLive<String>
+        val live: MutableLive<Durated>
     )
 
-    private fun Instant.passed() = Duration(
-        value = (clock.currentSecondsAsDouble() - epochSeconds.toDouble()).absoluteValue,
-        unit = DurationUnit.Seconds
-    ).toRelativeString()
+    private fun Instant.passed(): Durated {
+        val diff = (clock.currentSecondsAsDouble() - epochSeconds.toDouble())
+        return Durated(
+            duration = Duration(
+                value = diff.absoluteValue,
+                unit = DurationUnit.Seconds
+            ),
+            passed = diff.sign == -1.0
+        )
+    }
 
     private var timer: IntervalTimer? = null
     override fun start(force: Boolean?): DuratorStartResults {
@@ -28,7 +35,7 @@ class BrowserDurator(private val clock: Clock) : Durator {
         return DuratorStartResults.Started
     }
 
-    override fun durate(i: Instant): Live<String> {
+    override fun durate(i: Instant): Live<Durated> {
         val ref = instants.getOrPut(i.epochMilliSecondsAsLong) {
             ReferenceLive(0, mutableLiveOf(i.passed()))
         }
@@ -46,9 +53,9 @@ class BrowserDurator(private val clock: Clock) : Durator {
         if (instants.isEmpty()) stop()
     }
 
-    override fun stop(force: Boolean?) : DuratorStopResults {
+    override fun stop(force: Boolean?): DuratorStopResults {
         val i = timer ?: return DuratorStopResults.AlreadyStopped
-        if(instants.isNotEmpty() && force!=true) return DuratorStopResults.NoNeedToStop
+        if (instants.isNotEmpty() && force != true) return DuratorStopResults.NoNeedToStop
         clearInterval(i)
         timer = null
         return DuratorStopResults.Stopped

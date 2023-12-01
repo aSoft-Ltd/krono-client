@@ -30,7 +30,7 @@ interface Durator {
      * @see remove
      * @param i - the instance to be submitted
      */
-    fun durate(i: Instant): Live<String>
+    fun durate(i: Instant): Live<Durated>
 
     /**
      * Remove the [Instant] to the durator for computation
