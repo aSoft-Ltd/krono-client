@@ -21,7 +21,7 @@ class BrowserDurator(private val clock: Clock) : Durator {
                 value = diff.absoluteValue,
                 unit = DurationUnit.Seconds
             ),
-            passed = diff.sign == -1.0
+            passed = diff.sign == 1.0
         )
     }
 
