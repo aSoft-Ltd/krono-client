@@ -1,7 +1,7 @@
 @file:JsExport
 package krono
 
-import kotlin.js.JsExport
+import kotlinx.JsExport
 
 enum class DuratorStartResults {
     AlreadyStarted,

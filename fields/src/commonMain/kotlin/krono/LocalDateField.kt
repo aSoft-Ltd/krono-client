@@ -4,7 +4,7 @@
 package krono
 
 import symphony.BaseField
-import kotlin.js.JsExport
+import kotlinx.JsExport
 import kotlin.js.JsName
 
 interface LocalDateField : BaseField<LocalDate> {

@@ -4,7 +4,7 @@
 package krono
 
 import symphony.RangeField
-import kotlin.js.JsExport
+import kotlinx.JsExport
 import kotlin.js.JsName
 
 interface LocalDateRangeField : RangeField<LocalDate> {

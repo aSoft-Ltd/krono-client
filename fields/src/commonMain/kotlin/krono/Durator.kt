@@ -4,7 +4,7 @@
 package krono
 
 import cinematic.Live
-import kotlin.js.JsExport
+import kotlinx.JsExport
 
 /**
  * A durator is a client in memory service that helps in computing duration for the entire app
